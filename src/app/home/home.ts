@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   imports: [RouterOutlet, RouterLink],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './home.html',
+  styleUrl: './home.css',
 })
-export class App {
-  title = 'my-app';
+export class Home {
+  name = 'Nguyễn Gia Bảo';
+  age = 20;
 }
