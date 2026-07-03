@@ -1,0 +1,51 @@
+<div class="table-container">
+  <h2>Danh Sách Truyện Manga</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Hình ảnh</th>
+        <th>Tên truyện</th>
+        <th>Tác giả</th>
+        <th>Năm phát hành</th>
+        <th>Thể loại</th>
+        <th>Lượt xem</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (manga of stories; track manga.title; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>
+            <img
+              [src]="manga.imageUrl"
+              [alt]="manga.title"
+              class="manga-thumb"
+            />
+          </td>
+          <td class="fw-bold">{{ manga.title }}</td>
+          <td>{{ manga.author }}</td>
+          <td>{{ manga.releaseYear }}</td>
+          <td>
+            @for (genre of manga.genres; track genre) {
+              <span class="badge">{{ genre }}</span>
+            }
+          </td>
+          <td>
+            {{ manga.views }}
+            @if (manga.views > 1000000) {
+              <span style="color: red; font-weight: bold; margin-left: 5px"
+                >[Hot]</span
+              >
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" class="text-center">Không có dữ liệu hiển thị</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
