@@ -1,0 +1,157 @@
+/* 1. THIẾT LẬP BIẾN MÀU SẮC GIAO DIỆN (UI TOKENS) */
+:host {
+  --primary-color: #2563eb; /* Xanh dương hiện đại (Blue 600) */
+  --primary-hover: #1d4ed8; /* Blue 700 */
+  --bg-card: #ffffff;
+  --text-main: #0f172a; /* Slate 900 (Chữ chính đậm nét) */
+  --text-label: #475569; /* Slate 600 (Chữ nhãn vừa phải) */
+  --border-color: #cbd5e1; /* Slate 300 (Viền mặc định) */
+  --border-focus: #3b82f6; /* Blue 500 (Viền khi click vào) */
+  --shadow-card:
+    0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-btn: 0 4px 12px rgba(37, 99, 235, 0.2);
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+/* 2. KHUNG CHỨA FORM CHÍNH */
+form {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: var(--shadow-card);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Khoảng cách đồng đều giữa các nhóm form-group */
+}
+
+/* TIÊU ĐỀ ĐĂNG KÝ (Mẹo: Bạn có thể thêm thẻ <h2>Đăng Ký Tài Khoản</h2> vào đầu form) */
+form h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+
+/* 3. KHUNG CHỨA TỪNG Ô NHẬP LIỆU */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Khoảng cách từ Label xuống Input */
+  position: relative;
+}
+
+/* 4. THIẾT KẾ LABEL (NHÃN) TRỰC QUAN */
+.form-group label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-label);
+  transition: color 0.2s ease;
+}
+
+/* 5. Ô INPUT CHUẨN ĐẸP, CAO CẤP */
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14.5px;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Màu chữ của placeholder mờ tinh tế */
+.form-group input::placeholder {
+  color: #94a3b8; /* Slate 400 */
+}
+
+/* 6. HIỆU ỨNG TƯƠNG TÁC (FOCUS) */
+/* Khi click vào ô input: viền đổi màu, chữ label sáng lên, đổ bóng glow nhẹ xung quanh */
+.form-group:focus-within label {
+  color: var(--primary-color);
+}
+
+.form-group input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+  background-color: #fff;
+}
+
+/* 7. NÚT SUBMIT ĐĂNG KÝ CHUYÊN NGHIỆP */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: all 0.2s ease;
+}
+
+/* Hiệu ứng di chuột vào nút (Hover) */
+button[type="submit"]:hover:not([disabled]) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Hiệu ứng bấm nút (Active) */
+button[type="submit"]:active:not([disabled]) {
+  transform: translateY(1px);
+}
+
+/* 8. TRẠNG THÁI NÚT BỊ VÔ HIỆU HÓA (DISABLED) */
+/* Khi form chưa hợp lệ ([disabled]="!registerForm.valid"), nút sẽ tự chuyển sang màu xám lì mịn */
+button[type="submit"]:disabled {
+  background-color: #f1f5f9; /* Slate 100 */
+  color: #94a3b8; /* Slate 400 */
+  box-shadow: none;
+  cursor: not-allowed; /* Biến trỏ chuột thành vòng tròn gạch chéo */
+  border: 1px solid #e2e8f0;
+}
+
+/* 9. RESPONSIVE GỌN GÀNG TRÊN MOBILE */
+@media (max-width: 480px) {
+  form {
+    margin: 20px 16px;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+}
+
+/* Css Báo Lỗi */
+/* Khi ô input có lỗi và đã bị chạm vào, đổi viền thành màu đỏ */
+form input.ng-invalid.ng-touched {
+  border-color: #ef4444; /* Đỏ Crimson */
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+/* Container chứa thông báo lỗi */
+.error-message {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Định dạng chữ thông báo lỗi */
+.error-message small {
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+}

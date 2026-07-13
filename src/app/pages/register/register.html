@@ -1,0 +1,73 @@
+<form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+  <h2>Đăng Ký Tài Khoản</h2>
+  <div class="form-group"></div>
+  <div class="form-group">
+    <label for="username">Tên người dùng:</label>
+    <input
+      type="text"
+      id="username"
+      formControlName="username"
+      placeholder="Nhập tên người dùng..."
+    />
+    @if (
+      registerForm.get("username")?.errors &&
+      (registerForm.get("username")?.touched ||
+        registerForm.get("username")?.dirty)
+    ) {
+      <div class="error-message">
+        @if (registerForm.get("username")?.hasError("required")) {
+          <small>Tên người dùng không được để trống.</small>
+        }
+        @if (registerForm.get("username")?.hasError("minlength")) {
+          <small>Tên người dùng có ít nhất 3 ký tự.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      placeholder="Nhập email..."
+    />
+    @if (
+      registerForm.get("email")?.errors &&
+      (registerForm.get("email")?.touched || registerForm.get("email")?.dirty)
+    ) {
+      <div class="error-message">
+        @if (registerForm.get("email")?.hasError("required")) {
+          <small>Email không được để trống.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="password">Mật khẩu:</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      placeholder="Nhập mật khẩu..."
+    />
+    @if (
+      registerForm.get("password")?.errors &&
+      (registerForm.get("password")?.touched ||
+        registerForm.get("password")?.dirty)
+    ) {
+      <div class="error-message">
+        @if (registerForm.get("password")?.hasError("required")) {
+          <small>Mật khẩu không được để trống.</small>
+        }
+        @if (registerForm.get("password")?.hasError("minlength")) {
+          <small>Mật khẩu có ít nhất 6 ký tự.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <button type="submit" [disabled]="!registerForm.valid">Đăng ký</button>
+</form>

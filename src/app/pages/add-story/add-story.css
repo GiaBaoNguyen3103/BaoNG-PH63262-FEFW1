@@ -1,0 +1,165 @@
+/* 1. ĐỊNH NGHĨA BIẾN MÀU SẮC (Dễ quản lý và tùy biến) */
+:host {
+  --primary-color: #4f46e5; /* Xanh Indigo hiện đại */
+  --primary-hover: #4338ca;
+  --bg-form: #ffffff;
+  --text-main: #1e293b; /* Slate 800 */
+  --text-muted: #64748b; /* Slate 500 */
+  --border-color: #e2e8f0; /* Slate 200 */
+  --border-focus: #818cf8;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-lg:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+/* 2. KHUNG CHỨA FORM CHÍNH */
+form {
+  max-width: 650px; /* Tăng nhẹ chiều rộng để chia 2 cột */
+  margin: 40px auto;
+  padding: 40px;
+  background-color: var(--bg-form);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
+  /* Layout Grid chia cột cho form */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* 3. TIÊU ĐỀ (Chiếm trọn 2 cột) */
+h2 {
+  grid-column: span 2;
+  margin: 0 0 8px 0;
+  color: var(--text-main);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: left;
+  position: relative;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* 4. CẤU TRÚC Ô NHẬP LIỆU */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Các ô cần chiếm trọn chiều rộng (như URL hình ảnh) */
+.full-width {
+  grid-column: span 2;
+}
+
+/* 5. ĐỊNH DẠNG LABEL */
+form label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+/* 6. ĐỊNH DẠNG INPUT (Sử dụng CSS selector gộp gọn gàng) */
+form input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-main);
+  background-color: #fff;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+form input::placeholder {
+  color: #94a3b8;
+}
+
+/* 7. HIỆU ỨNG TƯƠNG TÁC (FOCUS) */
+/* Khi click vào ô input, đổi màu viền và đổi luôn màu chữ label phía trên */
+.form-group:focus-within label {
+  color: var(--primary-color);
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); /* Hiệu ứng glow nhẹ */
+}
+
+/* 8. NÚT SUBMIT CHUYÊN NGHIỆP (Chiếm trọn 2 cột) */
+button[type="submit"] {
+  grid-column: span 2;
+  margin-top: 12px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+  transition: all 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+  transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* 9. RESPONSIVE (Màn hình điện thoại tự động chuyển về 1 cột) */
+@media (max-width: 600px) {
+  form {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    margin: 16px;
+  }
+  h2,
+  .full-width,
+  button[type="submit"] {
+    grid-column: span 1;
+  }
+}
+
+/* Css Báo Lỗi */
+/* Khi ô input có lỗi và đã bị chạm vào, đổi viền thành màu đỏ */
+form input.ng-invalid.ng-touched {
+  border-color: #ef4444; /* Đỏ Crimson */
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+/* Container chứa thông báo lỗi */
+.error-message {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Định dạng chữ thông báo lỗi */
+.error-message small {
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+}
