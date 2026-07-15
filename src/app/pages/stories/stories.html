@@ -1,3 +1,17 @@
+@if (isLoading) {
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Đang tải danh sách truyện, vui lòng đợi...</p>
+  </div>
+}
+
+@if (errorMessage) {
+  <div class="error-container">
+    <p class="error-text">⚠️ {{ errorMessage }}</p>
+    <button class="btn-retry" (click)="getStories()">Thử lại</button>
+  </div>
+}
+
 <button class="btn-add-product" routerLink="/add-story">
   <span class="btn-icon">
     <svg
@@ -17,54 +31,63 @@
   </span>
   <span class="btn-text">Thêm sản phẩm</span>
 </button>
-<div class="table-container">
-  <h2>Danh Sách Truyện Manga</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>STT</th>
-        <th>Hình ảnh</th>
-        <th>Tên truyện</th>
-        <th>Tác giả</th>
-        <th>Năm phát hành</th>
-        <th>Thể loại</th>
-        <th>Lượt xem</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (manga of stories; track manga.title; let i = $index) {
+@if (!isLoading && !errorMessage) {
+  <div class="table-container">
+    <h2>Danh Sách Truyện Manga</h2>
+
+    <table>
+      <thead>
         <tr>
-          <td>{{ i + 1 }}</td>
-          <td>
-            <img
-              [src]="manga.imageUrl"
-              [alt]="manga.title"
-              class="manga-thumb"
-            />
-          </td>
-          <td class="fw-bold">{{ manga.title }}</td>
-          <td>{{ manga.author }}</td>
-          <td>{{ manga.releaseYear }}</td>
-          <td>
-            @for (genre of manga.genres; track genre) {
-              <span class="badge">{{ genre }}</span>
-            }
-          </td>
-          <td>
-            {{ manga.views }}
-            @if (manga.views > 1000000) {
-              <span style="color: red; font-weight: bold; margin-left: 5px"
-                >[Hot]</span
-              >
-            }
-          </td>
+          <th>STT</th>
+          <th>Hình ảnh</th>
+          <th>Tên truyện</th>
+          <th>Tác giả</th>
+          <th>Năm phát hành</th>
+          <th>Thể loại</th>
+          <th>Lượt xem</th>
+          <th>Hành Động</th>
         </tr>
-      } @empty {
-        <tr>
-          <td colspan="7" class="text-center">Không có dữ liệu hiển thị</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        @for (story of stories; track story.id) {
+          <tr>
+            <td>{{ story.id }}</td>
+            <td>
+              <img
+                [src]="story.imageUrl"
+                [alt]="story.title"
+                class="manga-thumb"
+              />
+            </td>
+            <td class="fw-bold">{{ story.title }}</td>
+            <td>{{ story.author }}</td>
+            <td>{{ story.releaseYear }}</td>
+            <td>
+              @for (genre of story.genres; track genre) {
+                <span class="badge">{{ genre }}</span>
+              }
+            </td>
+            <td>
+              {{ story.views }}
+              @if (story.views > 1000000) {
+                <span style="color: red; font-weight: bold; margin-left: 5px"
+                  >[Hot]</span
+                >
+              }
+            </td>
+            <td>
+              <button class="btn-delete" (click)="deleteStory(story.id)">
+                Xóa
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="text-center">Không có dữ liệu hiển thị</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
