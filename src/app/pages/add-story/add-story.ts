@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -14,8 +15,13 @@ import {
 })
 export class AddStory {
   addForm: FormGroup;
+  isLoading: boolean = false;
+  errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.addForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       author: ['', [Validators.required, Validators.minLength(2)]],
@@ -33,22 +39,52 @@ export class AddStory {
         '',
         [
           Validators.required,
-          Validators.pattern(/^https?:\/\/.+\.(jpg|jpeg|png|gif)$/),
+          // Validators.pattern(/^https?:\/\/.+\.(jpg|jpeg|png|gif)$/),
         ],
       ],
     });
   }
 
-  get f() {
-    return this.addForm.controls;
+  get title() {
+    return this.addForm.get('title');
+  }
+  get author() {
+    return this.addForm.get('author');
+  }
+  get views() {
+    return this.addForm.get('views');
+  }
+  get releaseYear() {
+    return this.addForm.get('releaseYear');
+  }
+  get genres() {
+    return this.addForm.get('genres');
+  }
+  get imageUrl() {
+    return this.addForm.get('imageUrl');
   }
 
   submitForm() {
     if (this.addForm.valid) {
+      this.isLoading = true;
+      this.errorMessage = null;
       console.log('Dữ liệu hợp lệ:', this.addForm.value);
+      this.http
+        .post(`http://localhost:3000/stories`, this.addForm.value)
+        .subscribe({
+          next: (data) => {
+            this.isLoading = false;
+            alert('Thêm sản phẩm thành công!!!');
+            this.addForm.reset();
+          },
+          error: () => {
+            this.isLoading = false;
+            this.errorMessage = 'Thêm sản phẩm thất bại!!!';
+          },
+        });
     } else {
       console.log('Form không hợp lệ, vui lòng kiểm tra lại lỗi!');
-      this.addForm.markAllAsTouched(); // Đánh dấu tất cả để hiện lỗi lên giao diện
+      this.addForm.markAllAsTouched();
     }
   }
 }

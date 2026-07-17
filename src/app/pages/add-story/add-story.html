@@ -10,15 +10,12 @@
       placeholder="Nhập tên truyện..."
     />
 
-    @if (
-      addForm.get("title")?.errors &&
-      (addForm.get("title")?.touched || addForm.get("title")?.dirty)
-    ) {
+    @if (title?.errors && (title?.touched || title?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("title")?.hasError("required")) {
+        @if (title?.hasError("required")) {
           <small>Tiêu đề không được để trống.</small>
         }
-        @if (addForm.get("title")?.hasError("minlength")) {
+        @if (title?.hasError("minlength")) {
           <small>Tiêu đề phải có ít nhất 3 ký tự.</small>
         }
       </div>
@@ -34,15 +31,12 @@
       placeholder="Tên tác giả..."
     />
 
-    @if (
-      addForm.get("author")?.errors &&
-      (addForm.get("author")?.touched || addForm.get("author")?.dirty)
-    ) {
+    @if (author?.errors && (author?.touched || author?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("author")?.hasError("required")) {
+        @if (author?.hasError("required")) {
           <small>Tên tác giả không được để trống.</small>
         }
-        @if (addForm.get("author")?.hasError("minlength")) {
+        @if (author?.hasError("minlength")) {
           <small>Tên tác giả phải có ít nhất 2 ký tự.</small>
         }
       </div>
@@ -53,15 +47,12 @@
     <label for="views">Lượt xem:</label>
     <input type="number" id="views" formControlName="views" />
 
-    @if (
-      addForm.get("views")?.errors &&
-      (addForm.get("views")?.touched || addForm.get("views")?.dirty)
-    ) {
+    @if (views?.errors && (views?.touched || views?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("views")?.hasError("required")) {
+        @if (views?.hasError("required")) {
           <small>Vui lòng nhập số lượt xem.</small>
         }
-        @if (addForm.get("views")?.hasError("min")) {
+        @if (views?.hasError("min")) {
           <small>Lượt xem không được nhỏ hơn 0.</small>
         }
       </div>
@@ -77,18 +68,15 @@
       placeholder="Ví dụ: 2026"
     />
 
-    @if (
-      addForm.get("releaseYear")?.errors &&
-      (addForm.get("releaseYear")?.touched || addForm.get("releaseYear")?.dirty)
-    ) {
+    @if (releaseYear?.errors && (releaseYear?.touched || releaseYear?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("releaseYear")?.hasError("required")) {
+        @if (releaseYear?.hasError("required")) {
           <small>Vui lòng nhập năm phát hành.</small>
         }
-        @if (addForm.get("releaseYear")?.hasError("min")) {
+        @if (releaseYear?.hasError("min")) {
           <small>Năm phát hành phải từ năm 1000 trở đi.</small>
         }
-        @if (addForm.get("releaseYear")?.hasError("max")) {
+        @if (releaseYear?.hasError("max")) {
           <small>Năm phát hành không được vượt quá năm sau.</small>
         }
       </div>
@@ -104,15 +92,12 @@
       placeholder="Hành động, Hài hước..."
     />
 
-    @if (
-      addForm.get("genres")?.errors &&
-      (addForm.get("genres")?.touched || addForm.get("genres")?.dirty)
-    ) {
+    @if (genres?.errors && (genres?.touched || genres?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("genres")?.hasError("required")) {
+        @if (genres?.hasError("required")) {
           <small>Vui lòng nhập thể loại truyện.</small>
         }
-        @if (addForm.get("genres")?.hasError("minlength")) {
+        @if (genres?.hasError("minlength")) {
           <small>Thể loại phải điền ít nhất 2 ký tự.</small>
         }
       </div>
@@ -128,15 +113,12 @@
       placeholder="https://example.com/anh.jpg"
     />
 
-    @if (
-      addForm.get("imageUrl")?.errors &&
-      (addForm.get("imageUrl")?.touched || addForm.get("imageUrl")?.dirty)
-    ) {
+    @if (imageUrl?.errors && (imageUrl?.touched || imageUrl?.dirty)) {
       <div class="error-message">
-        @if (addForm.get("imageUrl")?.hasError("required")) {
+        @if (imageUrl?.hasError("required")) {
           <small>Vui lòng nhập URL hình ảnh.</small>
         }
-        @if (addForm.get("imageUrl")?.hasError("pattern")) {
+        @if (imageUrl?.hasError("pattern")) {
           <small
             >Đường dẫn phải bắt đầu bằng http:// hoặc https:// và kết thúc bằng
             đuôi ảnh (.jpg, .jpeg, .png, .gif).</small
@@ -146,5 +128,7 @@
     }
   </div>
 
-  <button type="submit" [disabled]="addForm.invalid">Thêm Truyện Tranh</button>
+  <button type="submit" [disabled]="addForm.invalid">
+    {{ isLoading ? "Đang gửi" : "Thêm truyện" }}
+  </button>
 </form>
