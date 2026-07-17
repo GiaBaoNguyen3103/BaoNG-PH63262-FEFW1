@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -21,6 +22,7 @@ export class AddStory {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
+    private router: Router,
   ) {
     this.addForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
@@ -76,6 +78,7 @@ export class AddStory {
             this.isLoading = false;
             alert('Thêm sản phẩm thành công!!!');
             this.addForm.reset();
+            this.router.navigate(['/stories']);
           },
           error: () => {
             this.isLoading = false;
