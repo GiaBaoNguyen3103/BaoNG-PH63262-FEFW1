@@ -121,5 +121,19 @@
       "img": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&q=80",
       "description": "Laptop gaming cấu hình khủng với chip Intel Core i7 thế hệ 13, card đồ họa RTX 4060 và màn hình 165Hz mượt mà cho mọi tựa game."
     }
+  ],
+  "users": [
+    {
+      "username": "Gia Bảo",
+      "email": "ngb310305@gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "username": "Gia Bảo",
+      "email": "ngb310305123@gmail.com",
+      "password": "1234567",
+      "id": 2
+    }
   ]
 }

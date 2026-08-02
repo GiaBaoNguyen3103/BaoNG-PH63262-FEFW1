@@ -68,6 +68,39 @@
       </div>
     }
   </div>
+  <div class="form-group">
+    <label for="confirmPassword">Xác Nhận Mật khẩu:</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+      placeholder="Nhập mật khẩu..."
+    />
+    @if (
+      registerForm.get("confirmPassword")?.errors &&
+      (registerForm.get("confirmPassword")?.touched ||
+        registerForm.get("confirmPassword")?.dirty)
+    ) {
+      <div class="error-message">
+        @if (registerForm.get("confirmPassword")?.hasError("required")) {
+          <small>Mật khẩu không được để trống.</small>
+        }
+        @if (registerForm.get("confirmPassword")?.hasError("minlength")) {
+          <small>Mật khẩu có ít nhất 6 ký tự.</small>
+        }
+        @if (registerForm.hasError("passwordMismatch")) {
+          <small>Mật khẩu không khớp</small>
+        }
+      </div>
+    }
+  </div>
+  @if (errorMessage) {
+    <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
 
   <button type="submit" [disabled]="!registerForm.valid">Đăng ký</button>
+  <p>
+    Đã có tài khoản?
+    <a routerLink="/login">Đăng nhập</a>
+  </p>
 </form>
