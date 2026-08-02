@@ -1,139 +1,19 @@
 {
-  "stories": [
+  "posts": [
     {
       "id": 1,
-      "title": "One Piece",
-      "author": "Oda",
-      "views": 10000000,
-      "releaseYear": 1997,
-      "genres": [
-        "Action",
-        "Adventure",
-        "Fantasy",
-        "Shounen"
-      ],
-      "imageUrl": "https://static1.srcdn.com/wordpress/wp-content/uploads/2023/07/one-piece-franchise-poster.jpg"
-    },
-    {
-      "id": 2,
-      "title": "Naruto",
-      "author": "Kishimoto",
-      "views": 1900000,
-      "releaseYear": 1999,
-      "genres": [
-        "Action",
-        "Adventure",
-        "Fantasy",
-        "Shounen"
-      ],
-      "imageUrl": "https://tse2.mm.bing.net/th/id/OIP.dqQV8SLMZsqnhaSaY_zrdgHaL8?cb=thfc1falcon4&rs=1&pid=ImgDetMain&o=7&rm=3"
-    },
-    {
-      "id": 3,
-      "title": "Doraemon",
-      "author": "Fujiko F Fujio",
-      "views": 2700000,
-      "releaseYear": 1969,
-      "genres": [
-        "Comedy",
-        "Sci-Fi",
-        "Children",
-        "Slice of Life"
-      ],
-      "imageUrl": "https://i.pinimg.com/736x/ef/2b/04/ef2b045bce82875d5cef98aa835b5548.jpg"
-    },
-    {
-      "id": 4,
-      "title": "Dragon Ball",
-      "author": "Toriyama Akira",
-      "views": 1270000,
-      "releaseYear": 1984,
-      "genres": [
-        "Action",
-        "Adventure",
-        "Martial Arts",
-        "Shounen"
-      ],
-      "imageUrl": "https://thf.bing.com/th/id/R.035d7860abbd75f012cb6f2e59d48373?rik=Cbt89S9sbKqQMQ&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2015%2f07%2fdragon-ball-z-free-wallpaper-download.jpg&ehk=4jqGnTq1b5wx2APSOjj%2bnu5GlBL3FvDoEKJk4AZetco%3d&risl=&pid=ImgRaw&r=0"
-    },
-    {
-      "id": 5,
-      "title": "Bleach",
-      "author": "Kubo Taito",
-      "views": 240000,
-      "releaseYear": 2001,
-      "genres": [
-        "Action",
-        "Adventure",
-        "Supernatural",
-        "Shounen"
-      ],
-      "imageUrl": "https://wallpapercave.com/wp/UZbwoVk.jpg"
-    },
-    {
-      "id": 6,
-      "title": "Attack On Titan",
-      "author": "Isayama Hajime",
-      "views": 540000,
-      "releaseYear": 2009,
-      "genres": [
-        "Action",
-        "Dark Fantasy",
-        "Mystery",
-        "Shounen"
-      ],
-      "imageUrl": "https://i.pinimg.com/originals/aa/5e/da/aa5edaba6a718b8ac46d54ce4af8100d.jpg"
+      "title": "json-server",
+      "author": "typicode"
     }
   ],
-  "products": [
+  "comments": [
     {
       "id": 1,
-      "name": "iPhone 15 Pro Max",
-      "price": 29990000,
-      "img": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80",
-      "description": "Điện thoại flagship mới nhất của Apple với khung vỏ titan siêu bền, chip A17 Pro mạnh mẽ và hệ thống camera zoom quang học 5x vượt trội."
-    },
-    {
-      "id": 2,
-      "name": "Samsung Galaxy S24 Ultra",
-      "price": 26990000,
-      "img": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&q=80",
-      "description": "Sản phẩm đỉnh cao công nghệ từ Samsung tích hợp quyền năng Galaxy AI, bút S Pen tiện lợi và camera độ phân giải khủng 200MP."
-    },
-    {
-      "id": 3,
-      "name": "iPad Air M2 11-inch",
-      "price": 16990000,
-      "img": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&q=80",
-      "description": "Máy tính bảng mỏng nhẹ, hiệu năng vượt trội nhờ chip Apple M2, hỗ trợ Apple Pencil Pro, lý tưởng cho việc học tập và sáng tạo nội dung."
-    },
-    {
-      "id": 4,
-      "name": "MacBook Air M3 13-inch",
-      "price": 27490000,
-      "img": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80",
-      "description": "Laptop mỏng nhẹ hàng đầu thế giới với chip M3 thế hệ mới, thời lượng pin lên đến 18 tiếng và thiết kế nhôm nguyên khối sang trọng."
-    },
-    {
-      "id": 5,
-      "name": "Asus ROG Strix G16",
-      "price": 31990000,
-      "img": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&q=80",
-      "description": "Laptop gaming cấu hình khủng với chip Intel Core i7 thế hệ 13, card đồ họa RTX 4060 và màn hình 165Hz mượt mà cho mọi tựa game."
+      "body": "some comment",
+      "postId": 1
     }
   ],
-  "users": [
-    {
-      "username": "Gia Bảo",
-      "email": "ngb310305@gmail.com",
-      "password": "123456",
-      "id": 1
-    },
-    {
-      "username": "Gia Bảo",
-      "email": "ngb310305123@gmail.com",
-      "password": "1234567",
-      "id": 2
-    }
-  ]
+  "profile": {
+    "name": "typicode"
+  }
 }

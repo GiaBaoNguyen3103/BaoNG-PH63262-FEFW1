@@ -66,17 +66,19 @@ export class Register {
 
             const { confirmPassword, ...userData } = this.registerForm.value;
 
-            this.http.post('http://localhost:3000/users', userData).subscribe({
-              next: () => {
-                this.registerForm.reset();
-                alert('Đăng ký thành công');
-                this.router.navigate(['/login']);
-              },
-              error: (err) => {
-                this.errorMessage =
-                  err.error?.message || 'Có lỗi xảy ra khi đăng ký';
-              },
-            });
+            this.http
+              .post('http://localhost:3000/register', userData)
+              .subscribe({
+                next: () => {
+                  this.registerForm.reset();
+                  alert('Đăng ký thành công');
+                  this.router.navigate(['/login']);
+                },
+                error: (err) => {
+                  this.errorMessage =
+                    err.error?.message || 'Có lỗi xảy ra khi đăng ký';
+                },
+              });
           },
           error: () => {
             this.errorMessage = 'Không thể kiểm tra email. Vui lòng thử lại!';

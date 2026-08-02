@@ -7,6 +7,8 @@ import { Stories } from './pages/stories/stories';
 import { AddStory } from './pages/add-story/add-story';
 import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
+import { guestGuard } from './guards/guest-guard';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,7 +16,21 @@ export const routes: Routes = [
   { path: 'contact', component: Contact },
   { path: 'products', component: Products },
   { path: 'stories', component: Stories },
-  { path: 'add-story', component: AddStory },
-  { path: 'register', component: Register },
-  { path: 'login', component: Login },
+
+  {
+    path: 'add-story',
+    component: AddStory,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'login',
+    component: Login,
+    canActivate: [guestGuard],
+  },
+  {
+    path: 'register',
+    component: Register,
+    canActivate: [guestGuard],
+  },
 ];
